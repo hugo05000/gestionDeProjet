@@ -2,6 +2,11 @@
 #include "ui_mainwindow.h"
 #include <QSqlQuery>
 
+/**
+ * @brief MainWindow::on_pushButton_ajouterTache_clicked()
+ * Insère la tâche en base de données.
+ */
+
 void MainWindow::on_pushButton_ajouterTache_clicked()
 {
     QSqlQuery maxIdTache("SELECT IFNULL((SELECT MAX(idTache)+1 FROM Tache),0)");
@@ -22,12 +27,21 @@ void MainWindow::on_pushButton_ajouterTache_clicked()
     }
 }
 
+/**
+ * @brief MainWindow::on_pushButton_backFromAdd_clicked()
+ * Change l'index du widget "stackedWidget" à "0" afin d'afficher la fenêtre principale.
+ */
 
 void MainWindow::on_pushButton_backFromAdd_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+/**
+ * @brief MainWindow::on_pushButton_ajouterTache_clicked()
+ * Récupère le plus grand numéro de tâche +1 en fonction du projet courrant.
+ * @return Renvoie le plus grand numéro de tâche +1 en fonction du projet courrant
+ */
 
 QString MainWindow::getMaxTache()
 {

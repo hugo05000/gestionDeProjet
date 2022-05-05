@@ -4,6 +4,11 @@
 #include <QMainWindow>
 #include <QTime>
 
+/**
+ * @brief Classe MainWindow
+ * Classe fille de la classe QMainWindow
+ */
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE

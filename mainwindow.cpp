@@ -3,6 +3,11 @@
 #include <QSqlQuery>
 #include <QTimer>
 
+/**
+ * @brief Constructeur de la classe MainWindow
+ * Lance l'affichage des projets et de leur contenu et initialise la fenêtre.
+ */
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -16,18 +21,33 @@ MainWindow::MainWindow(QWidget *parent)
     affichageProjet();
 }
 
+/**
+ * @brief Destructeur de la classe MainWindow
+ * Destructeur de la classe MainWindow
+ */
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+/**
+ * @brief MainWindow::on_comboBox_listeProjets_currentIndexChanged()
+ * Affichage des tâche lors du changement d'index dans le menu déroulant.
+ * @param index : index courrant du menu déroulant
+ */
 
 void MainWindow::on_comboBox_listeProjets_currentIndexChanged(int index)
 {
     affichageTache();
 }
 
+/**
+ * @brief MainWindow::on_tableWidget_listeTache_cellClicked()
+ * Affiche les informations dans les zones de l'affichage en fonction de la ligne sélectionné dans le tableau du projet.
+ * @param int : numéro courrant de la ligne du tableau
+ * @param column : numéro courrant de la colonne du tableau
+ */
 
 void MainWindow::on_tableWidget_listeTache_cellClicked(int row, int column)
 {
@@ -40,18 +60,30 @@ void MainWindow::on_tableWidget_listeTache_cellClicked(int row, int column)
     valeurChronometre = chronometreRequest.value(0).toTime();
 }
 
+/**
+ * @brief MainWindow::on_pushButton_ajouterProjet_clicked()
+ * Change l'index du widget "stackedWidget" à "3" afin d'afficher la fenêtre d'ajout de projet.
+ */
 
 void MainWindow::on_pushButton_ajouterProjet_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
 }
 
+/**
+ * @brief MainWindow::on_pushButton_nouvelleTache_clicked()
+ * Change l'index du widget "stackedWidget" à "1" afin d'afficher la fenêtre d'ajout de tâche.
+ */
 
 void MainWindow::on_pushButton_nouvelleTache_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
+/**
+ * @brief MainWindow::on_pushButton_modifierTache_clicked()
+ * Change l'index du widget "stackedWidget" à "2" afin d'afficher la fenêtre de modification de tâche.
+ */
 
 void MainWindow::on_pushButton_modifierTache_clicked()
 {
@@ -60,6 +92,10 @@ void MainWindow::on_pushButton_modifierTache_clicked()
     ui->stackedWidget->setCurrentIndex(2);
 }
 
+/**
+ * @brief MainWindow::affichageTache()
+ * Affiche les tâches et leurs paramètres dans la fenêtre correspondante.
+ */
 
 void MainWindow::affichageTache()
 {
@@ -106,6 +142,11 @@ void MainWindow::affichageTache()
     }
 }
 
+/**
+ * @brief MainWindow::affichageProjet()
+ * Affiche les projets dans le menu déroulant correspondant.
+ */
+
 void MainWindow::affichageProjet()
 {
     ui->comboBox_listeProjets->clear();
@@ -121,6 +162,11 @@ void MainWindow::affichageProjet()
     }
 }
 
+/**
+ * @brief MainWindow::on_pushButton_chronometre_clicked()
+ * Lance le chronomètre.
+ */
+
 void MainWindow::on_pushButton_chronometre_clicked()
 {
     ui->pushButton_chronometre->setEnabled(0);
@@ -133,6 +179,11 @@ void MainWindow::on_pushButton_chronometre_clicked()
     connect(timer, SIGNAL(timeout()),this,SLOT(chronometre()));
     timer->start(1000);
 }
+
+/**
+ * @brief MainWindow::chronometre()
+ * Gère la décrémentation du chronomètre.
+ */
 
 void MainWindow::chronometre()
 {
@@ -147,6 +198,10 @@ void MainWindow::chronometre()
     }
 }
 
+/**
+ * @brief MainWindow::on_pushButton_pauseChronometre_clicked()
+ * Met en pause le chronomètre.
+ */
 
 void MainWindow::on_pushButton_pauseChronometre_clicked()
 {
@@ -156,6 +211,10 @@ void MainWindow::on_pushButton_pauseChronometre_clicked()
     timer->stop();
 }
 
+/**
+ * @brief MainWindow::on_pushButton_monterTache_clicked()
+ * Décrémente la tâche courrante de 1 dans la base de données et incrémente la tâche précédente de 1.
+ */
 
 void MainWindow::on_pushButton_monterTache_clicked()
 {
@@ -171,6 +230,10 @@ void MainWindow::on_pushButton_monterTache_clicked()
     }
 }
 
+/**
+ * @brief MainWindow::on_pushButton_descendreTache_clicked()
+ * Incrémente la tâche courrante de 1 dans la base de données et Décrémente la tâche suivante de 1.
+ */
 
 void MainWindow::on_pushButton_descendreTache_clicked()
 {

@@ -2,6 +2,11 @@
 #include "ui_mainwindow.h"
 #include <QSqlQuery>
 
+/**
+ * @brief MainWindow::on_pushButton_ModificationTache_clicked()
+ * Modifie la tâche en base de données.
+ */
+
 void MainWindow::on_pushButton_ModificationTache_clicked()
 {
     QSqlQuery modifierTacheRequest("UPDATE Tache SET libelleTache='"+ui->lineEdit_ModifierNomTache->text().replace("'","\'").replace(";","")+"',"
@@ -16,6 +21,11 @@ void MainWindow::on_pushButton_ModificationTache_clicked()
         qDebug()<<"Erreur lors de la modification de la tâche";
     }
 }
+
+/**
+ * @brief MainWindow::on_pushButton_backFromModify_clicked()
+ * Change l'index du widget "stackedWidget" à "0" afin d'afficher la fenêtre principale.
+ */
 
 void MainWindow::on_pushButton_backFromModify_clicked()
 {
